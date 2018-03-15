@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MissionViewDlg" widgetVar="MissionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMissionTitle}">
+            <h:form id="MissionViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{missionController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMissionLabel_titre}"/>
+                        <h:outputText value="#{missionController.selected.titre}" title="#{bundle.ViewMissionTitle_titre}"/>
+                        <h:outputText value="#{bundle.ViewMissionLabel_commentaire}"/>
+                        <h:outputText value="#{missionController.selected.commentaire}" title="#{bundle.ViewMissionTitle_commentaire}"/>
+                        <h:outputText value="#{bundle.ViewMissionLabel_datePublication}"/>
+                        <h:outputText value="#{missionController.selected.datePublication}" title="#{bundle.ViewMissionTitle_datePublication}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMissionLabel_dateLimite}"/>
+                        <h:outputText value="#{missionController.selected.dateLimite}" title="#{bundle.ViewMissionTitle_dateLimite}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMissionLabel_recruteur}"/>
+                        <h:outputText value="#{missionController.selected.recruteur}" title="#{bundle.ViewMissionTitle_recruteur}"/>
+                        <h:outputText value="#{bundle.ViewMissionLabel_categorie}"/>
+                        <h:outputText value="#{missionController.selected.categorie}" title="#{bundle.ViewMissionTitle_categorie}"/>
+                        <h:outputText value="#{bundle.ViewMissionLabel_langue}"/>
+                        <h:outputText value="#{missionController.selected.langue}" title="#{bundle.ViewMissionTitle_langue}"/>
+                        <h:outputText value="#{bundle.ViewMissionLabel_diplome}"/>
+                        <h:outputText value="#{missionController.selected.diplome}" title="#{bundle.ViewMissionTitle_diplome}"/>
+                        <h:outputText value="#{bundle.ViewMissionLabel_budget}"/>
+                        <h:outputText value="#{missionController.selected.budget}" title="#{bundle.ViewMissionTitle_budget}"/>
+                        <h:outputText value="#{bundle.ViewMissionLabel_admin}"/>
+                        <h:outputText value="#{missionController.selected.admin}" title="#{bundle.ViewMissionTitle_admin}"/>
+                        <h:outputText value="#{bundle.ViewMissionLabel_id}"/>
+                        <h:outputText value="#{missionController.selected.id}" title="#{bundle.ViewMissionTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MissionViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

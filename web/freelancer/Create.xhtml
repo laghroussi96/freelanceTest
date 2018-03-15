@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FreelancerCreateDlg" widgetVar="FreelancerCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateFreelancerTitle}">
+            <h:form id="FreelancerCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{freelancerController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateFreelancerLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{freelancerController.selected.nom}" title="#{bundle.CreateFreelancerTitle_nom}" />
+                        <p:outputLabel value="#{bundle.CreateFreelancerLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{freelancerController.selected.prenom}" title="#{bundle.CreateFreelancerTitle_prenom}" />
+                        <p:outputLabel value="#{bundle.CreateFreelancerLabel_tel}" for="tel" />
+                        <p:inputText id="tel" value="#{freelancerController.selected.tel}" title="#{bundle.CreateFreelancerTitle_tel}" />
+                        <p:outputLabel value="#{bundle.CreateFreelancerLabel_tarif}" for="tarif" />
+                        <p:inputText id="tarif" value="#{freelancerController.selected.tarif}" title="#{bundle.CreateFreelancerTitle_tarif}" />
+                        <p:outputLabel value="#{bundle.CreateFreelancerLabel_devise}" for="devise" />
+                        <p:selectOneMenu id="devise" value="#{freelancerController.selected.devise}" >
+                            <f:selectItems value="#{deviseController.itemsAvailableSelectOne}"
+                                           var="deviseItem"
+                                           itemValue="#{deviseItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateFreelancerLabel_diplome}" for="diplome" />
+                        <p:selectOneMenu id="diplome" value="#{freelancerController.selected.diplome}" >
+                            <f:selectItems value="#{diplomeController.itemsAvailableSelectOne}"
+                                           var="diplomeItem"
+                                           itemValue="#{diplomeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateFreelancerLabel_pays}" for="pays" />
+                        <p:selectOneMenu id="pays" value="#{freelancerController.selected.pays}" >
+                            <f:selectItems value="#{paysController.itemsAvailableSelectOne}"
+                                           var="paysItem"
+                                           itemValue="#{paysItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateFreelancerLabel_admin}" for="admin" />
+                        <p:selectOneMenu id="admin" value="#{freelancerController.selected.admin}" >
+                            <f:selectItems value="#{adminController.itemsAvailableSelectOne}"
+                                           var="adminItem"
+                                           itemValue="#{adminItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateFreelancerLabel_user}" for="user" />
+                        <p:selectOneMenu id="user" value="#{freelancerController.selected.user}" >
+                            <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                           var="userItem"
+                                           itemValue="#{userItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateFreelancerLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{freelancerController.selected.id}" title="#{bundle.CreateFreelancerTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{freelancerController.create}" value="#{bundle.Save}" update="display,:FreelancerListForm:datalist,:growl" oncomplete="handleSubmit(args,'FreelancerCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FreelancerCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="NotificationCreateDlg" widgetVar="NotificationCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateNotificationTitle}">
+            <h:form id="NotificationCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{notificationController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateNotificationLabel_text}" for="text" />
+                        <p:inputText id="text" value="#{notificationController.selected.text}" title="#{bundle.CreateNotificationTitle_text}" />
+                        <p:outputLabel value="#{bundle.CreateNotificationLabel_freelancer}" for="freelancer" />
+                        <p:selectOneMenu id="freelancer" value="#{notificationController.selected.freelancer}" >
+                            <f:selectItems value="#{freelancerController.itemsAvailableSelectOne}"
+                                           var="freelancerItem"
+                                           itemValue="#{freelancerItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateNotificationLabel_recruteur}" for="recruteur" />
+                        <p:selectOneMenu id="recruteur" value="#{notificationController.selected.recruteur}" >
+                            <f:selectItems value="#{recruteurController.itemsAvailableSelectOne}"
+                                           var="recruteurItem"
+                                           itemValue="#{recruteurItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateNotificationLabel_mission}" for="mission" />
+                        <p:selectOneMenu id="mission" value="#{notificationController.selected.mission}" >
+                            <f:selectItems value="#{missionController.itemsAvailableSelectOne}"
+                                           var="missionItem"
+                                           itemValue="#{missionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateNotificationLabel_admin}" for="admin" />
+                        <p:selectOneMenu id="admin" value="#{notificationController.selected.admin}" >
+                            <f:selectItems value="#{adminController.itemsAvailableSelectOne}"
+                                           var="adminItem"
+                                           itemValue="#{adminItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateNotificationLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{notificationController.selected.id}" title="#{bundle.CreateNotificationTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{notificationController.create}" value="#{bundle.Save}" update="display,:NotificationListForm:datalist,:growl" oncomplete="handleSubmit(args,'NotificationCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="NotificationCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

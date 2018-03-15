@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MissionCreateDlg" widgetVar="MissionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMissionTitle}">
+            <h:form id="MissionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{missionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMissionLabel_titre}" for="titre" />
+                        <p:inputText id="titre" value="#{missionController.selected.titre}" title="#{bundle.CreateMissionTitle_titre}" />
+                        <p:outputLabel value="#{bundle.CreateMissionLabel_commentaire}" for="commentaire" />
+                        <p:inputText id="commentaire" value="#{missionController.selected.commentaire}" title="#{bundle.CreateMissionTitle_commentaire}" />
+                        <p:outputLabel value="#{bundle.CreateMissionLabel_datePublication}" for="datePublication" />
+                        <p:calendar id="datePublication" pattern="MM/dd/yyyy" value="#{missionController.selected.datePublication}" title="#{bundle.EditMissionTitle_datePublication}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateMissionLabel_dateLimite}" for="dateLimite" />
+                        <p:calendar id="dateLimite" pattern="MM/dd/yyyy" value="#{missionController.selected.dateLimite}" title="#{bundle.EditMissionTitle_dateLimite}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateMissionLabel_recruteur}" for="recruteur" />
+                        <p:selectOneMenu id="recruteur" value="#{missionController.selected.recruteur}" >
+                            <f:selectItems value="#{recruteurController.itemsAvailableSelectOne}"
+                                           var="recruteurItem"
+                                           itemValue="#{recruteurItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMissionLabel_categorie}" for="categorie" />
+                        <p:selectOneMenu id="categorie" value="#{missionController.selected.categorie}" >
+                            <f:selectItems value="#{categorieController.itemsAvailableSelectOne}"
+                                           var="categorieItem"
+                                           itemValue="#{categorieItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMissionLabel_langue}" for="langue" />
+                        <p:selectOneMenu id="langue" value="#{missionController.selected.langue}" >
+                            <f:selectItems value="#{langueController.itemsAvailableSelectOne}"
+                                           var="langueItem"
+                                           itemValue="#{langueItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMissionLabel_diplome}" for="diplome" />
+                        <p:selectOneMenu id="diplome" value="#{missionController.selected.diplome}" >
+                            <f:selectItems value="#{diplomeController.itemsAvailableSelectOne}"
+                                           var="diplomeItem"
+                                           itemValue="#{diplomeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMissionLabel_budget}" for="budget" />
+                        <p:selectOneMenu id="budget" value="#{missionController.selected.budget}" >
+                            <f:selectItems value="#{budgetController.itemsAvailableSelectOne}"
+                                           var="budgetItem"
+                                           itemValue="#{budgetItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMissionLabel_admin}" for="admin" />
+                        <p:selectOneMenu id="admin" value="#{missionController.selected.admin}" >
+                            <f:selectItems value="#{adminController.itemsAvailableSelectOne}"
+                                           var="adminItem"
+                                           itemValue="#{adminItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateMissionLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{missionController.selected.id}" title="#{bundle.CreateMissionTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{missionController.create}" value="#{bundle.Save}" update="display,:MissionListForm:datalist,:growl" oncomplete="handleSubmit(args,'MissionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MissionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

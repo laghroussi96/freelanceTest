@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FreelancerViewDlg" widgetVar="FreelancerViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFreelancerTitle}">
+            <h:form id="FreelancerViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{freelancerController.selected != null}">
+                        <h:outputText value="#{bundle.ViewFreelancerLabel_nom}"/>
+                        <h:outputText value="#{freelancerController.selected.nom}" title="#{bundle.ViewFreelancerTitle_nom}"/>
+                        <h:outputText value="#{bundle.ViewFreelancerLabel_prenom}"/>
+                        <h:outputText value="#{freelancerController.selected.prenom}" title="#{bundle.ViewFreelancerTitle_prenom}"/>
+                        <h:outputText value="#{bundle.ViewFreelancerLabel_tel}"/>
+                        <h:outputText value="#{freelancerController.selected.tel}" title="#{bundle.ViewFreelancerTitle_tel}"/>
+                        <h:outputText value="#{bundle.ViewFreelancerLabel_tarif}"/>
+                        <h:outputText value="#{freelancerController.selected.tarif}" title="#{bundle.ViewFreelancerTitle_tarif}"/>
+                        <h:outputText value="#{bundle.ViewFreelancerLabel_devise}"/>
+                        <h:outputText value="#{freelancerController.selected.devise}" title="#{bundle.ViewFreelancerTitle_devise}"/>
+                        <h:outputText value="#{bundle.ViewFreelancerLabel_diplome}"/>
+                        <h:outputText value="#{freelancerController.selected.diplome}" title="#{bundle.ViewFreelancerTitle_diplome}"/>
+                        <h:outputText value="#{bundle.ViewFreelancerLabel_pays}"/>
+                        <h:outputText value="#{freelancerController.selected.pays}" title="#{bundle.ViewFreelancerTitle_pays}"/>
+                        <h:outputText value="#{bundle.ViewFreelancerLabel_admin}"/>
+                        <h:outputText value="#{freelancerController.selected.admin}" title="#{bundle.ViewFreelancerTitle_admin}"/>
+                        <h:outputText value="#{bundle.ViewFreelancerLabel_user}"/>
+                        <h:outputText value="#{freelancerController.selected.user}" title="#{bundle.ViewFreelancerTitle_user}"/>
+                        <h:outputText value="#{bundle.ViewFreelancerLabel_id}"/>
+                        <h:outputText value="#{freelancerController.selected.id}" title="#{bundle.ViewFreelancerTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="FreelancerViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
